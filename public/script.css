@@ -1,0 +1,45 @@
+document.addEventListener('DOMContentLoaded', () => {
+    // Fetch restaurant data and populate the UI dynamically
+    // For simplicity, let's assume the data is hardcoded here
+    const restaurants = [
+        { id: 1, name: 'Restaurant 1', cuisine: 'Italian' },
+        { id: 2, name: 'Restaurant 2', cuisine: 'Mexican' },
+        // Add more restaurant data
+    ];
+
+    const restaurantListContainer = document.getElementById('restaurant-list-container');
+    restaurants.forEach(restaurant => {
+        const li = document.createElement('li');
+        li.textContent = restaurant.name + ' - ' + restaurant.cuisine;
+        li.onclick = () => showMenu(restaurant);
+        restaurantListContainer.appendChild(li);
+    });
+});
+
+function showRestaurants() {
+    document.getElementById('home').classList.add('hidden');
+    document.getElementById('restaurant-list').classList.remove('hidden');
+}
+
+function showMenu(restaurant) {
+    document.getElementById('restaurant-list').classList.add('hidden');
+    document.getElementById('menu').classList.remove('hidden');
+    document.getElementById('restaurant-name').textContent = `Menu - ${restaurant.name}`;
+    // Fetch menu data for the selected restaurant and populate the UI dynamically
+    // For simplicity, let's assume the data is hardcoded here
+    const menuItems = [
+        { id: 1, name: 'Pizza', price: 8.99 },
+        { id: 2, name: 'Pasta', price: 12.99 },
+        // Add more menu items
+    ];
+
+    const menuItemsContainer = document.getElementById('menu-items-container');
+    menuItems.forEach(item => {
+        const div = document.createElement('div');
+        div.textContent = `${item.name} - $${item.price.toFixed(2)}`;
+        div.onclick = () => addToCart(item);
+        menuItemsContainer.appendChild(div);
+    });
+}
+
+// Add other functions (addToCart, showCart, showOrderSummary, placeOrder) similar to the previous example
